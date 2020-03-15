@@ -3,7 +3,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-    default = "kanak"
+    default = "xyz"
 }
 
 

@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "kanak-hu2020-vpc"
+    Name = "kv-vpc"
   }
 }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "private-subnet" {
   availability_zone = "${var.available_zone}"
 
   tags = {
-    Name = "HU2020-kanak-private"
+    Name = "kv-private-sub"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_subnet" "public-subnet" {
   # availability_zone = "ap-southeast-1b"
   availability_zone = "${var.available_zone}"
   tags = {
-    Name = "HU2020-kanak-public"
+    Name = "kv-public-sub"
   }
 }
 

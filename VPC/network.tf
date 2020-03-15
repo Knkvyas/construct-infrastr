@@ -9,7 +9,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags = {
-    Name = "HU2020-kanak-igw"
+    Name = "kv-igw"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "private-route1" {
     vpc_id = "${aws_vpc.main.id}"
     tags = {
-        Name = "HU2020-kanak-private"
+        Name = "kv-private-route"
     }
 }
 
@@ -33,19 +33,19 @@ resource "aws_route_table" "public-route1" {
         gateway_id = "${aws_internet_gateway.igw.id}" 
     }
     tags = {
-        Name = "HU2020-kanak-public"
+        Name = "kv-public-route"
     }
 
 }
 
 # Route table association
 
-resource "aws_route_table_association" "HU2020-kanak-public-subnet"{
+resource "aws_route_table_association" "assoc-public-subnet"{
     subnet_id = "${aws_subnet.public-subnet.id}"
     route_table_id = "${aws_route_table.public-route1.id}"
 }
 
-resource "aws_route_table_association" "HU2020-kanak-private-subnet"{
+resource "aws_route_table_association" "assoc-private-subnet"{
     subnet_id = "${aws_subnet.private-subnet.id}"
     route_table_id = "${aws_route_table.private-route1.id}"
 }
@@ -54,26 +54,7 @@ resource "aws_route_table_association" "HU2020-kanak-private-subnet"{
 # create security group
 resource "aws_security_group" "ssh-allowed" {
     vpc_id = "${aws_vpc.main.id}"
-    
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = -1
-        cidr_blocks = ["${var.out_bound}"]
-    }
-    ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "${var.protocol_type}"
-        cidr_blocks = ["${var.myip}"]
-    }
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "${var.protocol_type}"
-        cidr_blocks = ["${var.myip}"]
-    }
     tags = {
-        Name = "HU2020-kanak-ssh-allowed"
+        Name = "kv-ssh-allowed"
     }
 }

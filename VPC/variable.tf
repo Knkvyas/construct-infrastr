@@ -11,7 +11,7 @@ variable "AMI" {
 }
 
 variable "PUBLIC_KEY_PATH" {
-default = "/home/kanak_vyas/Documents/kanak.pem"
+default = "path/xyz.pem"
 }
 
 variable "VPC_CIDR_BLOCK" {

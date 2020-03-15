@@ -25,12 +25,12 @@ resource "aws_instance" "public-instance" {
     subnet_id = "${module.vpc_main.subnet-public}"
     # vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
     vpc_security_group_ids = ["${module.vpc_main.security-group}"]
-    # key_name = "kanak"
+    # key_name = "xyz"
     key_name = "${var.key_name}"
     user_data = "${file("EC2/install_psql.sh")}"
 
     tags = {
-      Name = "HU2020-kanak-public-tf"
+      Name = "kv-public-instance"
     }
 }
 
@@ -43,10 +43,10 @@ resource "aws_instance" "private-instance" {
     
     # vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
     vpc_security_group_ids = ["${module.vpc_main.security-group}"]
-    # key_name = "kanak"
+    # key_name = "xyz"
     key_name = "${var.key_name}"
 
     tags = {
-      Name = "HU2020-kanak-private-tf"
+      Name = "kv-private-instance"
     }
 }
